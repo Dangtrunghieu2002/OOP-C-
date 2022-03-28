@@ -1,0 +1,94 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+class Student; // forward declaration of Student class
+class Employee
+{
+private:
+char firstName[20];
+char lastName[20];
+float salary;
+public:
+Employee();
+Employee(const char *, const char *, float);
+Employee(Student &);
+// conversion constructor
+void Print();
+};
+class Student
+{
+private: // data members
+char *firstName;
+char *lastName;
+char middleInitial;
+float gpa;
+char *currentCourse;
+public:
+// constructor prototypes
+Student(); // default constructor
+Student(const char *, const char *, char, float,
+const char *);
+Student(const Student &); // copy constructor
+void Print();
+void CleanUp();
+float GetGpa(); // access function for private data member
+const char *GetFirstName();
+const char *GetLastName();
+};
+
+Employee::Employee() // default constructor
+{
+firstName[0] = lastName[0] = '\0'; // null character
+salary = 0.0;
+}
+// alternate constructor
+Employee::Employee(const char *fn, const char *ln,
+float money)
+{
+strcpy(firstName, fn);
+strcpy(lastName, ln);
+salary = money;
+}
+// conversion constructor – argument is a Student not Employee
+Employee::Employee(Student &s)
+{
+strcpy(firstName, s.GetFirstName());
+strcpy(lastName, s.GetLastName());
+if (s.GetGpa() >= 4.0)
+salary = 75000;
+else if (s.GetGpa() >= 3.0)
+salary = 60000;
+else
+salary = 50000;
+}
+void Employee::Print()
+{
+cout << firstName << " " << lastName << " " << salary;
+cout << endl;
+}
+
+// Definitions for Student's default, alternate, copy
+// constructors, Print()and CleanUp() have been omitted
+// for space, but are same as the prior Student example.
+float Student::GetGpa()
+{
+return gpa;
+}
+const char *Student::GetFirstName()
+{
+return firstName;
+}
+const char *Student::GetLastName()
+{
+return lastName;
+}
+
+int main()
+{
+Student s1("Giselle", "LeBrun", 'A', 3.5, "C++");
+Employee e1(s1);
+// conversion constructor
+e1.Print();
+s1.CleanUp(); // CleanUp() will delete() s1's dynamically
+return 0; // allocated data members
+}
