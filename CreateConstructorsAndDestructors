@@ -1,0 +1,60 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+class Person
+{
+private:
+    string name;
+    int yearOfBirth;
+public:
+    Person()
+    {
+        this->name = "Peter";
+        this->yearOfBirth = 2000;
+    }
+    Person(string name, int yearOfBirth)
+    {
+        this->name = name;
+        this->yearOfBirth = yearOfBirth;
+        cout << "Create Object for Person" << endl;
+    }
+    ~Person()
+    {
+        cout << "Delete Object of Person" << endl;
+    }
+    bool checkName(const Person&other)
+    {
+        bool result = false;
+        if(this->name == other.name)
+        {
+            result = true;
+        }
+        return result;
+    }
+    
+    bool checkyearOfBirth(const Person&other)
+    {
+        bool result = false;
+        if(this->yearOfBirth == other.yearOfBirth)
+        {
+            result = true;
+        }
+        return result;
+    }
+    void Print()
+    {
+        cout << "My name is " << name << " and my year of birth is " << yearOfBirth << endl;
+    }
+};
+
+int main()
+{
+    Person person2("Hieu",2002);
+    Person person1;
+    person2.checkName(person1);
+    person2.checkyearOfBirth(person1);
+    person2.Print();
+    return 0;
+    
+}
