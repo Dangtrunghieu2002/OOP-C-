@@ -1,0 +1,48 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+vector<int> patientList(50,1);
+
+class Patient
+{
+private:
+    string name;
+    int age;
+    string disease;
+    int index;
+public:
+    Patient(){
+    }
+    ~Patient(){};
+    
+    //add patient name to the patient list
+    // the index number will be given to the patient by the doctor
+    void addPatient(int index)
+    {
+        
+        //insert the index to the vector
+        auto addIndexToVector = patientList.insert(patientList.begin() + index -1 , index);
+        cout << "Type in your name, age, and disease" << endl;
+        cin >> name >> age >> disease;
+        cout << "The patient's information has been recorded.";
+    }
+    
+    //Input the index number for the patient
+    void removePatient(int index)
+    {
+          // Delete the index
+            patientList.erase( patientList.begin() + index-1);
+            name.erase();
+            disease.erase();
+            cout << "The information of the patient has been deleted." << endl;
+    }
+};
+
+
+int main()
+{
+    Patient person1;
+    person1.addPatient(1);
+    person1.removePatient(1);
+    return 0;
+}
