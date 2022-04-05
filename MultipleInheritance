@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+class Father
+{
+public:
+    void advice()
+    {
+        cout << "Work hard!" << endl;
+    }
+    void command()
+    {
+        cout << "Work hard!" << endl;
+    }
+    void sugget()
+    {
+        cout << "Work hard!" << endl;
+    }
+};
+
+class Mother
+{
+public:
+    void advice()
+    {
+        cout << "Take a rest!" << endl;
+    }
+    void recommend()
+    {
+        cout << "Take a rest!" << endl;
+    }
+    void suggest()
+    {
+        cout << "Take a rest!" << endl;
+    }
+};
+
+class Son: public Father, public Mother
+{};
+
+int main()
+{
+    Son peter = Son();
+    peter.Father::advice();
+    peter.Father::command();
+    peter.Father::sugget();
+    peter.Mother::advice();
+    peter.Mother::recommend();
+    peter.Mother::suggest();
+}
